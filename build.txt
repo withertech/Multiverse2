@@ -1,0 +1,4 @@
+displayName = Multiverse 2
+author = Witherking25
+version = 0.1
+modReferences = SubworldLibrary
