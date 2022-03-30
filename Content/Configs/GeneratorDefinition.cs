@@ -18,7 +18,7 @@ namespace Multiverse2.Content.Configs
 		}
 
 		public GeneratorDefinition(int type)
-			: base(GeneratorSystem.GetGenerator(type).FullName)
+			: base(GeneratorLoader.Get(type).FullName)
 		{
 		}
 

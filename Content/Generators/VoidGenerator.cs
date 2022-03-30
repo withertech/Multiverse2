@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
+using Multiverse2.Content.Configs;
 using Terraria;
 using Terraria.GameContent.Generation;
+using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
 namespace Multiverse2.Content.Generators
 {
 	public class VoidGenerator : ModGenerator
 	{
-		public override List<GenPass> Passes => new()
+		protected override List<GenPass> GenPasses(int seed) => new()
 		{
 			new PassLegacy("Spawn Point", (_, _) =>
 			{
@@ -17,7 +19,6 @@ namespace Multiverse2.Content.Generators
 			new PassLegacy("Spawn Island", (progress, _) =>
 			{
 				progress.Message = "Spawn Island";
-				WorldGen._lastSeed = Seed;
 				Main.worldSurface = Main.maxTilesY - 42;
 				Main.rockLayer = Main.maxTilesY - 64;
 				WorldGen.CloudIsland(Main.spawnTileX, Main.spawnTileY);

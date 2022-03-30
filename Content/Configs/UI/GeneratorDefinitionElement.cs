@@ -23,7 +23,7 @@ namespace Multiverse2.Content.Configs.UI
     {
       optionScale = 0.8f;
       var definitionOptionElementList = new List<DefinitionOptionElement<GeneratorDefinition>>();
-      for (var type = 0; type < GeneratorSystem.GeneratorCount; ++type)
+      for (var type = 0; type < GeneratorLoader.GeneratorCount; ++type)
       {
         var optionElement = type != -1 ? new GeneratorDefinitionOptionElement(new GeneratorDefinition(type), optionScale) : new GeneratorDefinitionOptionElement(new GeneratorDefinition("Terraria", "None"), optionScale);
         optionElement.OnClick += (a, b) =>
@@ -42,11 +42,11 @@ namespace Multiverse2.Content.Configs.UI
       var definitionOptionElementList = new List<DefinitionOptionElement<GeneratorDefinition>>();
       foreach (var option in options)
       {
-        if (GeneratorSystem.GetGenerator(option.type).Name.IndexOf(chooserFilter.CurrentString, StringComparison.OrdinalIgnoreCase) != -1)
+        if (GeneratorLoader.Get(option.type).Name.IndexOf(chooserFilter.CurrentString, StringComparison.OrdinalIgnoreCase) != -1)
         {
           var str = option.definition.mod;
           if (option.type >= 0)
-            str = GeneratorSystem.GetGenerator(option.type).Mod.DisplayName;
+            str = GeneratorLoader.Get(option.type).Mod.DisplayName;
           if (str.IndexOf(chooserFilterMod.CurrentString, StringComparison.OrdinalIgnoreCase) != -1)
             definitionOptionElementList.Add(option);
         }
