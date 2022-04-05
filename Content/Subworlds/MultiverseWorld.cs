@@ -1,31 +1,30 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoMod.Utils;
 using Multiverse2.Content.Configs;
 using Multiverse2.Content.Generators;
 using SubworldLibrary;
 using Terraria;
 using Terraria.GameContent.UI.States;
 using Terraria.ModLoader;
-using Terraria.UI;
 using Terraria.WorldBuilding;
 
 namespace Multiverse2.Content.Subworlds
 {
 	public class MultiverseWorld : Subworld
 	{
-		private MultiverseWorldConfiguration Gen { get; }
-
-		public override string Name => Gen.Name;
+		private UIWorldLoad _menu;
 
 		public MultiverseWorld(MultiverseWorldConfiguration gen)
 		{
 			Gen = gen;
 		}
 
-		public override bool ShouldSave => false;
+		private MultiverseWorldConfiguration Gen { get; }
+
+		public override string Name => Gen.Name;
+
+		public override bool ShouldSave => Gen.Saving;
 
 		public override bool NormalUpdates => true;
 
@@ -35,12 +34,16 @@ namespace Multiverse2.Content.Subworlds
 
 		public override List<GenPass> Tasks => GeneratorLoader.Get(Gen.Generator.Type).GetPasses(Gen);
 
-		private UIWorldLoad _menu;
+		public override void Load()
+		{
+			ModTypeLookup<Subworld>.Register(this);
+		}
 
 		public override void DrawMenu(GameTime gameTime)
 		{
 			Main.instance.GraphicsDevice.Clear(Color.Black);
-			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, (Effect) null, Main.UIScaleMatrix);
+			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp,
+				DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 			(_menu ??= new UIWorldLoad()).Draw(Main.spriteBatch);
 			Main.DrawCursor(Main.DrawThickCursor());
 			Main.spriteBatch.End();

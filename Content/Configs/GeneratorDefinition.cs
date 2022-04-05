@@ -1,14 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using Multiverse2.Content.Generators;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.IO;
 
 namespace Multiverse2.Content.Configs
 {
-	[TypeConverter(typeof (ToFromStringConverter<GeneratorDefinition>))]
+	[TypeConverter(typeof(ToFromStringConverter<GeneratorDefinition>))]
 	public class GeneratorDefinition : EntityDefinition
 	{
 		public static readonly Func<TagCompound, GeneratorDefinition> DESERIALIZER = Load;
@@ -32,10 +31,17 @@ namespace Multiverse2.Content.Configs
 		{
 		}
 
-		public override int Type => !ModContent.TryFind<ModGenerator>(mod != "Terraria" ? mod + "/" + name : name, out var gen) ? 1 : gen.Type;
+		public override int Type =>
+			!ModContent.TryFind<ModGenerator>(mod != "Terraria" ? mod + "/" + name : name, out var gen) ? 1 : gen.Type;
 
-		public static GeneratorDefinition FromString(string s) => new(s);
+		public static GeneratorDefinition FromString(string s)
+		{
+			return new(s);
+		}
 
-		public static GeneratorDefinition Load(TagCompound tag) => new(tag.GetString("mod"), tag.GetString("name"));
+		public static GeneratorDefinition Load(TagCompound tag)
+		{
+			return new(tag.GetString("mod"), tag.GetString("name"));
+		}
 	}
 }

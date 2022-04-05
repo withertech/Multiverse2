@@ -2,9 +2,6 @@
 using System.Reflection;
 using Microsoft.Xna.Framework.Graphics;
 using Multiverse2.Content.Generators;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 using Terraria.ModLoader.UI;
 
 namespace Multiverse2.Content.Configs.UI
@@ -18,7 +15,8 @@ namespace Multiverse2.Content.Configs.UI
 		{
 			Width.Set(150f * scale, 0.0f);
 			Height.Set(40f * scale, 0.0f);
-			var scaleTextTextPanel = new UIAutoScaleTextTextPanel<string>(type == -1 ? "None" : GeneratorLoader.Get(type).Name);
+			var scaleTextTextPanel =
+				new UIAutoScaleTextTextPanel<string>(type == -1 ? "None" : GeneratorLoader.Get(type).Name);
 			scaleTextTextPanel.Width.Percent = 1f;
 			scaleTextTextPanel.Height.Percent = 1f;
 			_text = scaleTextTextPanel;
