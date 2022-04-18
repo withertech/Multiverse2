@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.Xna.Framework.Graphics;
 using Multiverse2.Content.Generators;
+using Terraria.Localization;
 using Terraria.ModLoader.UI;
 
 namespace Multiverse2.Content.Configs.UI
@@ -16,7 +17,8 @@ namespace Multiverse2.Content.Configs.UI
 			Width.Set(150f * scale, 0.0f);
 			Height.Set(40f * scale, 0.0f);
 			var scaleTextTextPanel =
-				new UIAutoScaleTextTextPanel<string>(type == -1 ? "None" : GeneratorLoader.Get(type).Name);
+				new UIAutoScaleTextTextPanel<string>(type == -1 ? "None" : Language.GetTextValue(
+					$"Mods.{GeneratorLoader.Get(type).Mod.Name}.GeneratorName.{GeneratorLoader.Get(type).Name}"));
 			scaleTextTextPanel.Width.Percent = 1f;
 			scaleTextTextPanel.Height.Percent = 1f;
 			_text = scaleTextTextPanel;
@@ -26,7 +28,8 @@ namespace Multiverse2.Content.Configs.UI
 		public override void SetItem(GeneratorDefinition item)
 		{
 			base.SetItem(item);
-			_text?.SetText(type == -1 ? "None" : GeneratorLoader.Get(type).Name);
+			_text?.SetText(type == -1 ? "None" : Language.GetTextValue(
+				$"Mods.{GeneratorLoader.Get(type).Mod.Name}.GeneratorName.{GeneratorLoader.Get(type).Name}"));
 		}
 
 		public override void SetScale(float scale)

@@ -8,7 +8,7 @@ namespace Multiverse2.Content.Generators
 {
 	public class CaveGenerator : ModGenerator
 	{
-		protected override List<GenPass> GenPasses(int seed)
+		protected override List<GenPass> GenPasses(int seed, WorldGenConfiguration configuration)
 		{
 			return new List<GenPass>
 			{

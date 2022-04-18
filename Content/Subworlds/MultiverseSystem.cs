@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Multiverse2.Content.Configs;
+using Multiverse2.Content.Generators;
 using Multiverse2.Content.Tiles;
 using Terraria;
 using Terraria.ModLoader;
@@ -19,6 +21,9 @@ namespace Multiverse2.Content.Subworlds
 		{
 			foreach (var world in ModContent.GetInstance<MultiverseConfig>().Worlds)
 				Mod.AddContent(new MultiverseWorld(world));
+
+			InitializeLang();
+
 			if (!Main.dedServ)
 			{
 				UI = new UserInterface();
@@ -27,9 +32,32 @@ namespace Multiverse2.Content.Subworlds
 			}
 		}
 
+		private void InitializeLang()
+		{
+
+			foreach (var world in ModContent.GetInstance<MultiverseConfig>().Worlds)
+			{
+				var mvName = LocalizationLoader.CreateTranslation(Mod, "SubworldName." + world.Name.Replace(" ", ""));
+				mvName.SetDefault(world.Name);
+				LocalizationLoader.AddTranslation(mvName);
+			}
+
+			foreach (var generator in ModContent.GetContent<ModGenerator>().ToList())
+			{
+				var genName = LocalizationLoader.CreateTranslation(generator.Mod, "GeneratorName." + generator.Name);
+				genName.SetDefault(generator.DisplayName);
+				LocalizationLoader.AddTranslation(genName);
+			}
+
+			var save = LocalizationLoader.CreateTranslation(Mod, "Save");
+			save.SetDefault("Save");
+			LocalizationLoader.AddTranslation(save);
+		}
+
 		public override void Unload()
 		{
 			UIState = null;
+			UI = null;
 		}
 
 

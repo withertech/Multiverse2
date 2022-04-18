@@ -13,14 +13,16 @@ namespace Multiverse2.Content.Generators
 
 		public int Type { get; private set; }
 
+		public virtual string DisplayName => Name.Replace("Generator", "");
+
 		protected virtual int Seed => Rand.Next();
 
-		public List<GenPass> GetPasses(MultiverseWorldConfiguration configuration)
+		public List<GenPass> GetPasses(MultiverseWorldConfiguration configuration, WorldGenConfiguration genConfiguration)
 		{
-			return GenPasses(SetupPasses(configuration));
+			return GenPasses(SetupPasses(configuration), genConfiguration);
 		}
 
-		protected abstract List<GenPass> GenPasses(int seed);
+		protected abstract List<GenPass> GenPasses(int seed, WorldGenConfiguration configuration);
 
 		private int SetupPasses(MultiverseWorldConfiguration configuration)
 		{

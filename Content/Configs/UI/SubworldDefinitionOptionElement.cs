@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Xna.Framework.Graphics;
 using SubworldLibrary;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.UI;
 
@@ -20,7 +21,8 @@ namespace Multiverse2.Content.Configs.UI
 			var scaleTextTextPanel =
 				new UIAutoScaleTextTextPanel<string>(type == -1
 					? "None"
-					: ModContent.GetContent<Subworld>().ToList()[type].Name);
+					: Language.GetTextValue(
+						$"Mods.{ModContent.GetContent<Subworld>().ToList()[type].Mod.Name}.SubworldName.{ModContent.GetContent<Subworld>().ToList()[type].Name}"));
 			Logging.PublicLogger.Info(type);
 			scaleTextTextPanel.Width.Percent = 1f;
 			scaleTextTextPanel.Height.Percent = 1f;
@@ -31,7 +33,8 @@ namespace Multiverse2.Content.Configs.UI
 		public override void SetItem(SubworldDefinition item)
 		{
 			base.SetItem(item);
-			_text?.SetText(type == -1 ? "None" : ModContent.GetContent<Subworld>().ToList()[type].Name);
+			_text?.SetText(type == -1 ? "None" : Language.GetTextValue(
+				$"Mods.{ModContent.GetContent<Subworld>().ToList()[type].Mod.Name}.SubworldName.{ModContent.GetContent<Subworld>().ToList()[type].Name}"));
 		}
 
 		public override void SetScale(float scale)

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Microsoft.Xna.Framework;
 using Multiverse2.Content.Configs;
 using Multiverse2.Content.Configs.UI;
 using Multiverse2.Content.Subworlds;
@@ -54,7 +56,15 @@ namespace Multiverse2.Content.Tiles
 		{
 			if (TileUtils.TryGetTileEntityAs(i, j, out PortalTileEntity entity))
 			{
-				SubworldSystem.Enter($"{entity.Subworld.mod}/{entity.Subworld.name}");
+				string fullname = $"{entity.Subworld.mod}/{entity.Subworld.name}";
+				if (fullname == "Terraria/None")
+				{
+					SubworldSystem.Exit();
+				}
+				else
+				{
+					SubworldSystem.Enter(fullname);
+				}
 				return true;
 			}
 
@@ -123,41 +133,51 @@ namespace Multiverse2.Content.Tiles
 			var placedEntity = Place(origin.X, origin.Y);
 			var player = Main.LocalPlayer;
 
-			//Should your tile entity bring up a UI, this line is useful to prevent item slots from misbehaving
-			Main.mouseRightRelease = false;
-
-			//The following four (4) if-blocks are recommended to be used if your multitile opens a UI when right clicked:
-			if (player.sign > -1)
+			if (SubworldSystem.Current == null)
 			{
-				SoundEngine.PlaySound(11);
-				player.sign = -1;
-				Main.editSign = false;
-				Main.npcChatText = string.Empty;
-			}
+//Should your tile entity bring up a UI, this line is useful to prevent item slots from misbehaving
+				Main.mouseRightRelease = false;
 
-			if (Main.editChest)
+				//The following four (4) if-blocks are recommended to be used if your multitile opens a UI when right clicked:
+				if (player.sign > -1)
+				{
+					SoundEngine.PlaySound(11);
+					player.sign = -1;
+					Main.editSign = false;
+					Main.npcChatText = string.Empty;
+				}
+
+				if (Main.editChest)
+				{
+					SoundEngine.PlaySound(12);
+					Main.editChest = false;
+					Main.npcChatText = string.Empty;
+				}
+
+				if (player.editedChestName)
+				{
+					NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1,
+						NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f);
+					player.editedChestName = false;
+				}
+
+				if (player.talkNPC > -1)
+				{
+					player.SetTalkNPC(-1);
+					Main.npcChatCornerItem = 0;
+					Main.npcChatText = string.Empty;
+				}
+
+
+				ModContent.GetInstance<MultiverseSystem>().UIState.Show(origin);
+			}
+			else
 			{
-				SoundEngine.PlaySound(12);
-				Main.editChest = false;
-				Main.npcChatText = string.Empty;
+				if (TileUtils.TryGetTileEntityAs(origin.X, origin.Y, out PortalTileEntity entity))
+				{
+					entity.Subworld = new SubworldDefinition();
+				}
 			}
-
-			if (player.editedChestName)
-			{
-				NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1,
-					NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f);
-				player.editedChestName = false;
-			}
-
-			if (player.talkNPC > -1)
-			{
-				player.SetTalkNPC(-1);
-				Main.npcChatCornerItem = 0;
-				Main.npcChatText = string.Empty;
-			}
-
-
-			ModContent.GetInstance<MultiverseSystem>().UIState.Show(origin);
 			return placedEntity;
 		}
 
@@ -256,8 +276,7 @@ namespace Multiverse2.Content.Tiles
 				});
 			}
 
-
-			var button = new UITextPanel<string>("Save")
+			var saveButton = new UIIconTextButton(Language.GetText("Mods.Multiverse2.Save"), Color.White, "Images/UI/CharCreation/Paste")
 			{
 				Width =
 				{
@@ -270,8 +289,8 @@ namespace Multiverse2.Content.Tiles
 				HAlign = 0.5f
 			};
 
-			button.OnClick += (evt, element) => { Hide(); };
-			list.Add(button);
+			saveButton.OnClick += delegate { Hide(); };
+			list.Add(saveButton);
 
 
 		}

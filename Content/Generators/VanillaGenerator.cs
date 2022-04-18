@@ -8,9 +8,9 @@ namespace Multiverse2.Content.Generators
 {
 	public class VanillaGenerator : ModGenerator
 	{
-		protected override List<GenPass> GenPasses(int seed)
+		protected override List<GenPass> GenPasses(int seed, WorldGenConfiguration configuration)
 		{
-			return new()
+			return new List<GenPass>
 			{
 				new PassLegacy("Vanilla", (progress, _) =>
 				{

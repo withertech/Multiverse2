@@ -22,7 +22,7 @@ namespace Multiverse2.Content.Subworlds
 
 		private MultiverseWorldConfiguration Gen { get; }
 
-		public override string Name => Gen.Name;
+		public override string Name => Gen.Name.Replace(" ", "");
 
 		public override bool ShouldSave => Gen.Saving;
 
@@ -32,7 +32,9 @@ namespace Multiverse2.Content.Subworlds
 
 		public override int Height => Gen.Height;
 
-		public override List<GenPass> Tasks => GeneratorLoader.Get(Gen.Generator.Type).GetPasses(Gen);
+		public override WorldGenConfiguration Config => WorldGenConfiguration.FromEmbeddedPath("Terraria.GameContent.WorldBuilding.Configuration.json");
+
+		public override List<GenPass> Tasks => GeneratorLoader.Get(Gen.Generator.Type).GetPasses(Gen, Config);
 
 		public override void Load()
 		{

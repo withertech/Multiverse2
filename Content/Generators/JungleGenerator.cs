@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.WorldBuilding;
@@ -8,11 +9,11 @@ namespace Multiverse2.Content.Generators
 {
 	public class JungleGenerator : ModGenerator
 	{
-		protected override List<GenPass> GenPasses(int seed)
+		protected override List<GenPass> GenPasses(int seed, WorldGenConfiguration configuration)
 		{
 			return new List<GenPass>
 			{
-				new PassLegacy("Placing Mud", (progress, configuration) =>
+				new PassLegacy("Placing Mud", (progress, _) =>
 				{
 					progress.Message = "Placing Mud";
 					for (var i = 0; i < Main.maxTilesX; i++)
@@ -22,7 +23,7 @@ namespace Multiverse2.Content.Generators
 						WorldGen.PlaceTile(i, j, TileID.Mud, true, true);
 					}
 				}, 80f),
-				new PassLegacy("Making Swiss Cheese", (progress, configuration) =>
+				new PassLegacy("Making Swiss Cheese", (progress, _) =>
 				{
 					progress.Message = "Making Swiss Cheese";
 					Main.worldSurface = 0;
@@ -138,7 +139,7 @@ namespace Multiverse2.Content.Generators
 						}
 					}
 				}, 5f),
-				new PassLegacy("Settling Liquids", (progress, configuration) =>
+				new PassLegacy("Settling Liquids", (progress, _) =>
 				{
 					progress.Message = "Settling Liquids";
 					Liquid.worldGenTilesIgnoreWater(true);
