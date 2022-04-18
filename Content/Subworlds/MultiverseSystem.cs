@@ -19,8 +19,12 @@ namespace Multiverse2.Content.Subworlds
 
 		public override void OnModLoad()
 		{
-			foreach (var world in ModContent.GetInstance<MultiverseConfig>().Worlds)
-				Mod.AddContent(new MultiverseWorld(world));
+			if (ModContent.GetInstance<MultiverseConfig>() != null && ModContent.GetInstance<MultiverseConfig>().Worlds is
+			{
+				Count: > 0
+			})
+				foreach (var world in ModContent.GetInstance<MultiverseConfig>().Worlds)
+					Mod.AddContent(new MultiverseWorld(world));
 
 			InitializeLang();
 
@@ -34,20 +38,26 @@ namespace Multiverse2.Content.Subworlds
 
 		private void InitializeLang()
 		{
-
-			foreach (var world in ModContent.GetInstance<MultiverseConfig>().Worlds)
+			if (ModContent.GetInstance<MultiverseConfig>() != null && ModContent.GetInstance<MultiverseConfig>().Worlds is
 			{
-				var mvName = LocalizationLoader.CreateTranslation(Mod, "SubworldName." + world.Name.Replace(" ", ""));
-				mvName.SetDefault(world.Name);
-				LocalizationLoader.AddTranslation(mvName);
-			}
-
-			foreach (var generator in ModContent.GetContent<ModGenerator>().ToList())
+				Count: > 0
+			})
+				foreach (var world in ModContent.GetInstance<MultiverseConfig>().Worlds)
+				{
+					var mvName = LocalizationLoader.CreateTranslation(Mod, "SubworldName." + world.Name.Replace(" ", ""));
+					mvName.SetDefault(world.Name);
+					LocalizationLoader.AddTranslation(mvName);
+				}
+			if (ModContent.GetContent<ModGenerator>() != null && ModContent.GetContent<ModGenerator>().ToList() is
 			{
-				var genName = LocalizationLoader.CreateTranslation(generator.Mod, "GeneratorName." + generator.Name);
-				genName.SetDefault(generator.DisplayName);
-				LocalizationLoader.AddTranslation(genName);
-			}
+				Count: > 0
+			})
+				foreach (var generator in ModContent.GetContent<ModGenerator>().ToList())
+				{
+					var genName = LocalizationLoader.CreateTranslation(generator.Mod, "GeneratorName." + generator.Name);
+					genName.SetDefault(generator.DisplayName);
+					LocalizationLoader.AddTranslation(genName);
+				}
 
 			var save = LocalizationLoader.CreateTranslation(Mod, "Save");
 			save.SetDefault("Save");
