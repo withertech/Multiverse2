@@ -70,6 +70,13 @@ namespace Multiverse2.Content.Tiles
 
 			return false;
 		}
+		
+		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) 
+		{
+			r = 0.0f;
+			g = 1f;
+			b = 0.1f;
+		}
 	}
 
 	public class PortalTileItem : ModItem
