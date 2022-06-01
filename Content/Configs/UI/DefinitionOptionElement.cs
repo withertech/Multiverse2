@@ -36,9 +36,9 @@ namespace Multiverse2.Content.Configs.UI
 		public virtual void SetItem(T item)
 		{
 			definition = item;
-			type = definition?.Type ?? 0;
+			type = definition?.Type ?? -1;
 			unloaded = definition is {IsUnloaded: true};
-			if (definition == null || type == 0 && !unloaded)
+			if (definition == null || type == -1 && !unloaded)
 			{
 				tooltip = "Nothing";
 			}

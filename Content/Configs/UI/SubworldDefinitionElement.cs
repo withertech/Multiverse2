@@ -8,6 +8,18 @@ namespace Multiverse2.Content.Configs.UI
 {
 	public class SubworldDefinitionElement : DefinitionElement<SubworldDefinition>
 	{
+		public Predicate<SubworldDefinition> Filter { get; }
+
+		public SubworldDefinitionElement()
+			: this(_ => true)
+		{
+			
+		}
+
+		public SubworldDefinitionElement(Predicate<SubworldDefinition> filter)
+		{
+			Filter = filter;
+		}
 		protected override DefinitionOptionElement<SubworldDefinition> CreateDefinitionOptionElement()
 		{
 			return new SubworldDefinitionOptionElement(Value, 0.8f);
@@ -26,9 +38,12 @@ namespace Multiverse2.Content.Configs.UI
 			var definitionOptionElementList = new List<DefinitionOptionElement<SubworldDefinition>>();
 			for (var type = 0; type < ModContent.GetContent<Subworld>().ToList().Count; ++type)
 			{
-				var optionElement = type != -1
-					? new SubworldDefinitionOptionElement(new SubworldDefinition(type), optionScale)
-					: new SubworldDefinitionOptionElement(new SubworldDefinition("Terraria", "None"), optionScale);
+				var definition = type != -1
+					? new SubworldDefinition(type)
+					: new SubworldDefinition("Terraria", "None");
+				if (!Filter.Invoke(definition)) continue;
+				var optionElement = new SubworldDefinitionOptionElement(definition, optionScale);
+						
 				optionElement.OnClick += (a, b) =>
 				{
 					Value = optionElement.definition;

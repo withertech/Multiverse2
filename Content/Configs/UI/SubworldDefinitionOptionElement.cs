@@ -23,7 +23,6 @@ namespace Multiverse2.Content.Configs.UI
 					? "None"
 					: Language.GetTextValue(
 						$"Mods.{ModContent.GetContent<Subworld>().ToList()[type].Mod.Name}.SubworldName.{ModContent.GetContent<Subworld>().ToList()[type].Name}"));
-			Logging.PublicLogger.Info(type);
 			scaleTextTextPanel.Width.Percent = 1f;
 			scaleTextTextPanel.Height.Percent = 1f;
 			_text = scaleTextTextPanel;

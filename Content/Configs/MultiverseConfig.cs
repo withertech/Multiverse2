@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Multiverse2.Content.Configs.UI;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
+using Terraria.ModLoader.Config.UI;
 
 namespace Multiverse2.Content.Configs
 {
@@ -18,11 +21,18 @@ namespace Multiverse2.Content.Configs
 		[ReloadRequired]
 		[Tooltip("The list of worlds for Multiverse 2 to generate")]
 		public List<MultiverseWorldConfiguration> Worlds { get; set; }
+
+		[ReloadRequired]
+		[Label("Tp Filter")]
+		[Tooltip("The list of subworlds to filter from the /mvtp command and the portal tile")]
+		public List<MultiverseTpFilterConfiguration> TpFilter { get; set; }
 	}
 
 	public class MultiverseWorldConfiguration
 	{
-		[Tooltip("The world's name")] public string Name { get; set; }
+		[DefaultValue("World")]
+		[Tooltip("The world's name")] 
+		public string Name { get; set; }
 
 		[DefaultValue(0)]
 		[Tooltip("The world's seed. If it is set to 0 (Default), then it will be random")]
@@ -44,8 +54,21 @@ namespace Multiverse2.Content.Configs
 		[Tooltip("The world's height")]
 		public int Height { get; set; }
 
-		[CustomModConfigItem(typeof(GeneratorDefinitionElement))]
 		[Tooltip("The world's generator")]
-		public GeneratorDefinition Generator { get; set; } = new("Multiverse2/VanillaGenerator");
+		public GeneratorDefinition Generator { get; set; }
+	}
+
+	public class MultiverseTpFilterConfiguration
+	{
+		[DefaultValue(false)]
+		[Tooltip("Whether or not the subworld should be able to be traveled to using /mvtp")]
+		public bool Command { get; set; }		
+		
+		[DefaultValue(false)]
+		[Tooltip("Whether or not the subworld should be able to be traveled to using the portal tile")]
+		public bool Portal { get; set; }
+
+		[Tooltip("The subworld to filter")]
+		public SubworldDefinition Subworld { get; set; }
 	}
 }
