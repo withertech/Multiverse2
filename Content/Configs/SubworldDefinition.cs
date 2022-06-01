@@ -32,7 +32,7 @@ namespace Multiverse2.Content.Configs
 		{
 		}
 
-		public override int Type => !ModContent.TryFind<Subworld>($"{mod}/{name}", out var subworld)
+		public override int Type => !ModContent.TryFind<Subworld>($"{Mod}/{Name}", out var subworld)
 			? 0
 			: ModContent.GetContent<Subworld>().ToList().IndexOf(subworld);
 

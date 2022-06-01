@@ -15,7 +15,7 @@ namespace Multiverse2.Content.Generators
 				new PassLegacy("Vanilla", (progress, _) =>
 				{
 					var currentGenerationProgress = WorldGenerator.CurrentGenerationProgress;
-					SubworldSystem.drawUnderworld = true;
+					SubworldSystem.hideUnderworld = true;
 					WorldGen.GenerateWorld(seed, progress);
 					WorldGenerator.CurrentGenerationProgress = currentGenerationProgress;
 				})

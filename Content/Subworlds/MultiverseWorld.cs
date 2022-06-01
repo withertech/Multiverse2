@@ -43,12 +43,7 @@ namespace Multiverse2.Content.Subworlds
 
 		public override void DrawMenu(GameTime gameTime)
 		{
-			Main.instance.GraphicsDevice.Clear(Color.Black);
-			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp,
-				DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 			(_menu ??= new UIWorldLoad()).Draw(Main.spriteBatch);
-			Main.DrawCursor(Main.DrawThickCursor());
-			Main.spriteBatch.End();
 		}
 	}
 }

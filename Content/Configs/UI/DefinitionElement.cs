@@ -84,7 +84,7 @@ namespace Multiverse2.Content.Configs.UI
 			uiScrollbar.HAlign = 1f;
 			chooserGrid.SetScrollbar(uiScrollbar);
 			chooserPanel.Append(uiScrollbar);
-			var element3 = new UIModConfigHoverImageSplit(upDownTexture, "Zoom in", "Zoom out");
+			var element3 = new UIModConfigHoverImageSplit(UpDownTexture, "Zoom in", "Zoom out");
 			element3.Recalculate();
 			element3.Top.Set(-4f, 0.0f);
 			element3.Left.Set(-18f, 1f);

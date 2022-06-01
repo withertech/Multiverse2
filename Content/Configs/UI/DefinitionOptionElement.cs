@@ -45,9 +45,9 @@ namespace Multiverse2.Content.Configs.UI
 			else
 			{
 				var interpolatedStringHandler = new DefaultInterpolatedStringHandler(3, 3);
-				interpolatedStringHandler.AppendFormatted(definition.name);
+				interpolatedStringHandler.AppendFormatted(definition.Name);
 				interpolatedStringHandler.AppendLiteral(" [");
-				interpolatedStringHandler.AppendFormatted(definition.mod);
+				interpolatedStringHandler.AppendFormatted(definition.Mod);
 				interpolatedStringHandler.AppendLiteral("]");
 				interpolatedStringHandler.AppendFormatted(unloaded
 					? " (" + Language.GetTextValue("tModLoader.UnloadedItemItemName") + ")"

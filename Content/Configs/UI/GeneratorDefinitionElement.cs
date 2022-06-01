@@ -47,7 +47,7 @@ namespace Multiverse2.Content.Configs.UI
 					    .IndexOf(chooserFilter.CurrentString, StringComparison.OrdinalIgnoreCase) !=
 				    -1)
 				{
-					var str = option.definition.mod;
+					var str = option.definition.Mod;
 					if (option.type >= 0)
 						str = GeneratorLoader.Get(option.type).Mod.DisplayName;
 					if (str.IndexOf(chooserFilterMod.CurrentString, StringComparison.OrdinalIgnoreCase) != -1)

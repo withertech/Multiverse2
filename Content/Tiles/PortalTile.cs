@@ -56,7 +56,7 @@ namespace Multiverse2.Content.Tiles
 		{
 			if (TileUtils.TryGetTileEntityAs(i, j, out PortalTileEntity entity))
 			{
-				string fullname = $"{entity.Subworld.mod}/{entity.Subworld.name}";
+				string fullname = $"{entity.Subworld.Mod}/{entity.Subworld.Name}";
 				if (fullname == "Terraria/None")
 				{
 					SubworldSystem.Exit();
@@ -141,7 +141,7 @@ namespace Multiverse2.Content.Tiles
 				//The following four (4) if-blocks are recommended to be used if your multitile opens a UI when right clicked:
 				if (player.sign > -1)
 				{
-					SoundEngine.PlaySound(11);
+					SoundEngine.PlaySound(SoundID.MenuClose);
 					player.sign = -1;
 					Main.editSign = false;
 					Main.npcChatText = string.Empty;
@@ -149,7 +149,7 @@ namespace Multiverse2.Content.Tiles
 
 				if (Main.editChest)
 				{
-					SoundEngine.PlaySound(12);
+					SoundEngine.PlaySound(SoundID.MenuTick);
 					Main.editChest = false;
 					Main.npcChatText = string.Empty;
 				}

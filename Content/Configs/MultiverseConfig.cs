@@ -28,9 +28,8 @@ namespace Multiverse2.Content.Configs
 		[Tooltip("The world's seed. If it is set to 0 (Default), then it will be random")]
 		public int Seed { get; set; }
 
-		[DefaultValue(false)]
-		[Tooltip(
-			"Whether or not the world should save. \nUSE AT YOUR OWN RISK! \nThere is currently a bug in Subworld Library that can cause your subworld to overwrite your main world!\nThis will be fixed in the next version of Subworld Library (hopefully) and it should be fine once it is.")]
+		[DefaultValue(true)]
+		[Tooltip("Whether or not the world should save.")]
 		public bool Saving { get; set; }
 
 		[Range(4200, 8400)]

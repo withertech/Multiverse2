@@ -32,7 +32,7 @@ namespace Multiverse2.Content.Configs
 		}
 
 		public override int Type =>
-			!ModContent.TryFind<ModGenerator>(mod != "Terraria" ? mod + "/" + name : name, out var gen) ? 1 : gen.Type;
+			!ModContent.TryFind<ModGenerator>(Mod != "Terraria" ? Mod + "/" + Name : Name, out var gen) ? 1 : gen.Type;
 
 		public static GeneratorDefinition FromString(string s)
 		{
