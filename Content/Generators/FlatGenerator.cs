@@ -46,7 +46,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 6E-05); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							copper = WorldGen.genRand.Next(2) != 0 ? 166 : 7;
+							copper = !WorldGen.genRand.NextBool(2)? 166 : 7;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.worldSurfaceLow, (int) WorldGen.worldSurfaceHigh),
 							WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6), copper);
@@ -55,7 +55,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 8E-05); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							copper = WorldGen.genRand.Next(2) != 0 ? 166 : 7;
+							copper = !WorldGen.genRand.NextBool(2)? 166 : 7;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.worldSurfaceHigh, (int) WorldGen.rockLayerHigh),
 							WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 7), copper);
@@ -64,7 +64,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 0.0002); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							copper = WorldGen.genRand.Next(2) != 0 ? 166 : 7;
+							copper = !WorldGen.genRand.NextBool(2)? 166 : 7;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.rockLayerLow, Main.maxTilesY),
 							WorldGen.genRand.Next(4, 9),
@@ -74,7 +74,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 3E-05); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							iron = WorldGen.genRand.Next(2) != 0 ? 167 : 6;
+							iron = !WorldGen.genRand.NextBool(2)? 167 : 6;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.worldSurfaceLow, (int) WorldGen.worldSurfaceHigh),
 							WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(2, 5), iron);
@@ -83,7 +83,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 8E-05); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							iron = WorldGen.genRand.Next(2) != 0 ? 167 : 6;
+							iron = !WorldGen.genRand.NextBool(2)? 167 : 6;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.worldSurfaceHigh, (int) WorldGen.rockLayerHigh),
 							WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(3, 6), iron);
@@ -92,7 +92,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 0.0002); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							iron = WorldGen.genRand.Next(2) != 0 ? 167 : 6;
+							iron = !WorldGen.genRand.NextBool(2)? 167 : 6;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.rockLayerLow, Main.maxTilesY),
 							WorldGen.genRand.Next(4, 9),
@@ -102,16 +102,16 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 2.6E-05); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							silver = WorldGen.genRand.Next(2) != 0 ? 168 : 9;
+							silver = !WorldGen.genRand.NextBool(2)? 168 : 9;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.worldSurfaceHigh, (int) WorldGen.rockLayerHigh),
 							WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(3, 6), silver);
 					}
 
-					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 0.00015); ++index)
+					for (var index = 0; index < (int)(Main.maxTilesX * Main.maxTilesY * 0.00015); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							silver = WorldGen.genRand.Next(2) != 0 ? 168 : 9;
+							silver = !WorldGen.genRand.NextBool(2)? 168 : 9;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.rockLayerLow, Main.maxTilesY),
 							WorldGen.genRand.Next(4, 9),
@@ -121,7 +121,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 0.00017); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							silver = WorldGen.genRand.Next(2) != 0 ? 168 : 9;
+							silver = !WorldGen.genRand.NextBool(2)? 168 : 9;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next(0, (int) WorldGen.worldSurfaceLow), WorldGen.genRand.Next(4, 9),
 							WorldGen.genRand.Next(4, 8), silver);
@@ -130,7 +130,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 2.6E-05); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							gold = WorldGen.genRand.Next(2) != 0 ? 168 : 9;
+							gold = !WorldGen.genRand.NextBool(2)? 168 : 9;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.worldSurfaceHigh, (int) WorldGen.rockLayerHigh),
 							WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(3, 6), gold);
@@ -139,7 +139,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 0.00015); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							gold = WorldGen.genRand.Next(2) != 0 ? 168 : 9;
+							gold = !WorldGen.genRand.NextBool(2)? 168 : 9;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next((int) WorldGen.rockLayerLow, Main.maxTilesY),
 							WorldGen.genRand.Next(4, 9),
@@ -149,7 +149,7 @@ namespace Multiverse2.Content.Generators
 					for (var index = 0; index < (int) (Main.maxTilesX * Main.maxTilesY * 0.00017); ++index)
 					{
 						if (WorldGen.drunkWorldGen)
-							gold = WorldGen.genRand.Next(2) != 0 ? 168 : 9;
+							gold = !WorldGen.genRand.NextBool(2)? 168 : 9;
 						WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 							WorldGen.genRand.Next(0, (int) WorldGen.worldSurfaceLow), WorldGen.genRand.Next(4, 9),
 							WorldGen.genRand.Next(4, 8), gold);
@@ -184,7 +184,7 @@ namespace Multiverse2.Content.Generators
 							if (tile.HasTile)
 							{
 								tile = Main.tile[index129, y];
-								if (tile.TileType == 2 && WorldGen.genRand.Next(15) == 0)
+								if (tile.TileType == 2 && WorldGen.genRand.NextBool(15))
 								{
 									WorldGen.PlacePumpkin(index129, y - 1);
 									var num378 = WorldGen.genRand.Next(5);

@@ -60,11 +60,11 @@ namespace Multiverse2.Content.Configs
 
 	public class MultiverseTpFilterConfiguration
 	{
-		[DefaultValue(false)]
+		[DefaultValue(true)]
 		[Tooltip("Whether or not the subworld should be able to be traveled to using /mvtp")]
 		public bool Command { get; set; }		
 		
-		[DefaultValue(false)]
+		[DefaultValue(true)]
 		[Tooltip("Whether or not the subworld should be able to be traveled to using the portal tile")]
 		public bool Portal { get; set; }
 

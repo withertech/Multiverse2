@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.WorldBuilding;
@@ -48,7 +47,7 @@ namespace Multiverse2.Content.Generators
 							if (tile.HasTile)
 							{
 								tile = Main.tile[index129, y];
-								if (tile.TileType == 2 && WorldGen.genRand.Next(15) == 0)
+								if (tile.TileType == 2 && WorldGen.genRand.NextBool(15))
 								{
 									WorldGen.PlacePumpkin(index129, y - 1);
 									var num378 = WorldGen.genRand.Next(5);

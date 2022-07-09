@@ -34,7 +34,7 @@ namespace Multiverse2.Content.Generators
 						if (WorldGen.rockLayerHigh <= Main.maxTilesY)
 						{
 							var type = -1;
-							if (WorldGen.genRand.Next(10) == 0)
+							if (WorldGen.genRand.NextBool(10))
 								type = -2;
 							WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX),
 								WorldGen.genRand.Next(type == -2 ? Main.maxTilesY * 3 / 4 : 0, Main.maxTilesY),
