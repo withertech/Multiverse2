@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -27,7 +28,9 @@ namespace Multiverse2.Content.Tiles
             Main.tileLighted[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
-
+            TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
+            
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.HookPostPlaceMyPlayer =
                 new PlacementHook(ModContent.GetInstance<PortalTileEntity>().Hook_AfterPlacement, -1, 0, false);
@@ -77,6 +80,11 @@ namespace Multiverse2.Content.Tiles
             r = 0.0f;
             g = 1f;
             b = 0.1f;
+        }
+
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
+        {
+            return true;
         }
     }
 

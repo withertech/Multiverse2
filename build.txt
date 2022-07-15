@@ -1,6 +1,6 @@
 displayName = Multiverse 2
 author = Witherking25
-version = 2.3.2
+version = 2.4.0
 modReferences = SubworldLibrary
 homepage = https://github.com/withertech/Multiverse2
 includeSource = true
