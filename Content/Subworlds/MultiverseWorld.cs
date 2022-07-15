@@ -41,9 +41,12 @@ namespace Multiverse2.Content.Subworlds
 			ModTypeLookup<Subworld>.Register(this);
 		}
 
-		// public override void DrawMenu(GameTime gameTime)
-		// {
-		// 	(_menu ??= new UIWorldLoad()).Draw(Main.spriteBatch);
-		// }
+		public override void DrawMenu(GameTime gameTime)
+		{
+			if (WorldGenerator.CurrentGenerationProgress != null)
+				(_menu ??= new UIWorldLoad()).Draw(Main.spriteBatch);
+			else
+				base.DrawMenu(gameTime);
+		}
 	}
 }
