@@ -36,11 +36,6 @@ namespace Multiverse2.Content.Subworlds
 
 		public override List<GenPass> Tasks => GeneratorLoader.Get(Gen.Generator.Type).GetPasses(Gen, Config);
 
-		public override void Load()
-		{
-			ModTypeLookup<Subworld>.Register(this);
-		}
-
 		public override void DrawMenu(GameTime gameTime)
 		{
 			if (WorldGenerator.CurrentGenerationProgress != null)
